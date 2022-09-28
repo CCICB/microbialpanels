@@ -30,8 +30,9 @@ library(microbialpanels)
 # List available panels
 panels_available()
 #> [1] "HumanMicrobiomeLarge"     "OralMicrobiome"          
-#> [3] "CancerViruses"            "TorqueTenoVirusesSpecies"
-#> [5] "TorqueTenoVirusesGenus"
+#> [3] "CancerViruses"            "CommonNosocomial"        
+#> [5] "FungalPathogens"          "TorqueTenoVirusesSpecies"
+#> [7] "TorqueTenoVirusesGenus"
 
 # Load a panel of interest
 panels_load('CancerViruses')
