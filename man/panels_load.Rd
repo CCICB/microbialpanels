@@ -4,10 +4,12 @@
 \alias{panels_load}
 \title{Load a Panel}
 \usage{
-panels_load(panel, verbose = TRUE)
+panels_load(panel, taxids_only = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{panel}{name of a valid microbial panel}
+
+\item{taxids_only}{return a vector of taxids (numeric)}
 
 \item{verbose}{controls verbosity of error message (flag)}
 }

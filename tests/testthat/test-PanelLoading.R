@@ -11,15 +11,18 @@ test_that("panels_available() works", {
 test_that("panels_load() works", {
   expect_error(panels_load("asdasdklajsdklawjld", verbose=FALSE), regexp = "retry with a valid panel name")
   expect_true(is.data.frame(panels_load(panels_available()[[1]])))
+
+  # Returning taxids only works
+  expect_true(is.numeric(panels_load(taxids_only = TRUE, panels_available()[[1]])))
 })
 
 
 test_that("All panels have standardised columns names", {
-  standardised_columns = c('ScientificName', 'Taxid', 'Type', 'Rank')
+  required_columns = required_columns()
 
   panel_dfs <- panel_load_all()
 
-  has_all_std_names <- sapply(panel_dfs, function(panel_df){ all(standardised_columns %in% colnames(panel_df))})
+  has_all_std_names <- sapply(panel_dfs, function(panel_df){ all(required_columns %in% colnames(panel_df))})
   names(has_all_std_names) <- names(panel_dfs)
 
   expect_true(all(has_all_std_names))

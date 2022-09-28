@@ -19,13 +19,14 @@ panels_available <- function(){
 #'
 #' @param panel name of a valid microbial panel
 #' @param verbose controls verbosity of error message (flag)
+#' @param taxids_only return a vector of taxids (numeric)
 #' @return dataframe describing microbes in the panel (including ncbi taxonomy ID
 #' @export
 #'
 #' @examples
 #' panels_load('CancerViruses')
 #'
-panels_load <- function(panel, verbose=TRUE){
+panels_load <- function(panel, taxids_only = FALSE, verbose=TRUE){
 
   valid_panels <- panels_available()
   names(valid_panels) <- rep('>', length(valid_panels))
@@ -39,7 +40,13 @@ panels_load <- function(panel, verbose=TRUE){
     }
     cli::cli_abort('Please retry with a valid panel name')
   }
-  readxl::read_excel(path_to_panels_excel(), sheet = panel)
+
+  panel_df <- readxl::read_excel(path_to_panels_excel(), sheet = panel)
+
+  if(taxids_only)
+    return(as.numeric(panel_df[['Taxid']]))
+
+  return(panel_df)
 }
 
 
@@ -58,3 +65,6 @@ panel_load_all <- function(){
   return(panel_list)
 }
 
+required_columns <- function(){
+  c('ScientificName', 'Taxid', 'Type', 'Rank')
+}

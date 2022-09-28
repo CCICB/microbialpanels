@@ -16,7 +16,9 @@ knitr::opts_chunk$set(
 # microbialpanels
 
 <!-- badges: start -->
+
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+
 <!-- badges: end -->
 
 The goal of microbialpanels is to provide curated lists of microbes relevant to specific applications
@@ -32,8 +34,6 @@ remotes::install_github("CCICB/microbialpanels")
 
 ## Usage
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r example}
 library(microbialpanels)
 
@@ -41,5 +41,17 @@ library(microbialpanels)
 panels_available()
 
 # Load a panel of interest
-panels_available()
+panels_load('CancerViruses')
 ```
+
+All panels have the following columns:
+
+-   ScientificName
+
+-   Taxid
+
+-   Type
+
+-   Rank
+
+Panel tables may have additional columns that vary from one panel to another
